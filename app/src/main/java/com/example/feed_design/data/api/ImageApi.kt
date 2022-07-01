@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface ImageApi {
 
     @GET(END_POINT)
-    suspend fun getImage():List<Image>
+    suspend fun getImage(): List<Image>
 }

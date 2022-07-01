@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val imageRepository: ImageRepository
-): ViewModel() {
+) : ViewModel() {
 
     private val _state = MutableStateFlow(emptyList<Image>())
     val state: StateFlow<List<Image>>
@@ -25,5 +25,5 @@ class MainViewModel @Inject constructor(
             _state.value = images
         }
     }
-    
+
 }

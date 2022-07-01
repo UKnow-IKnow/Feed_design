@@ -16,7 +16,7 @@ import javax.inject.Singleton
 object ImageApiModule {
     @Provides
     @Singleton
-    fun provideApi(builder:Retrofit.Builder): ImageApi{
+    fun provideApi(builder: Retrofit.Builder): ImageApi {
         return builder
             .build()
             .create(ImageApi::class.java)
@@ -24,7 +24,7 @@ object ImageApiModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit.Builder{
+    fun provideRetrofit(): Retrofit.Builder {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
