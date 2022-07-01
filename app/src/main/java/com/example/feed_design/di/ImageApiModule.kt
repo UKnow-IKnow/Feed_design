@@ -22,6 +22,8 @@ object ImageApiModule {
             .create(ImageApi::class.java)
     }
 
+    @Provides
+    @Singleton
     fun provideRetrofit(): Retrofit.Builder{
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
