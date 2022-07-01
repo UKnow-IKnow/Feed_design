@@ -58,7 +58,7 @@ fun postCard(image: Image) {
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp),
+                    .height(300.dp),
                 contentScale = ContentScale.FillBounds
             )
 

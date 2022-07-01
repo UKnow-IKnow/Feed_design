@@ -10,5 +10,4 @@ class ImageRepository @Inject constructor(
     suspend fun getImages(): List<Image>{
         return imageApi.getImage()
     }
-
 }
