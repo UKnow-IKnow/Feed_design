@@ -20,6 +20,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
 import com.example.feed_design.R
 import com.example.feed_design.data.api.model.Image
+import com.example.feed_design.ui.theme.LightBlue
+import com.example.feed_design.ui.theme.OffWhite
 
 
 @Composable
@@ -28,7 +30,7 @@ fun FeedScreen() {
     val state by mainViewModel.state.collectAsState()
 
     LazyColumn(
-        modifier = Modifier.background(Color.LightGray)
+        modifier = Modifier.background(OffWhite),
     ) {
         if (state.isEmpty()) {
             item {
@@ -51,11 +53,12 @@ fun postCard(image: Image) {
     val imagerPainter = rememberImagePainter(data = image.image)
     val likes = (0..100).random()
     val comments = (0..1000).random()
+    val hour = (1..23).random()
 
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 8.dp)
+            .padding(8.dp)
             .background(Color.White)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -65,8 +68,21 @@ fun postCard(image: Image) {
                     .size(48.dp)
                     .padding(4.dp)
             )
-            Text(text = image.name, fontWeight = FontWeight.Bold)
+            Column(
+                modifier = Modifier.padding(start = 2.dp)
+            ) {
+                Text(text = image.name, fontWeight = FontWeight.Bold)
+                Text(text = "$hour hour ago")
+            }
+            Box(modifier = Modifier.background(LightBlue)) {
+                Text(text = image.ancestry)
+            }
+            Icon(
+                painter = painterResource(id = R.drawable.ic_verticalmenu),
+                contentDescription = ""
+            )
         }
+        Text(text = image.actor, modifier = Modifier.padding(8.dp))
         Image(
             painter = imagerPainter,
             contentDescription = null,
@@ -75,8 +91,11 @@ fun postCard(image: Image) {
                 .height(350.dp),
             contentScale = ContentScale.FillBounds
         )
-        Text(text = image.actor, modifier = Modifier.padding(8.dp))
-        Row {
+
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
             Row(modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_likes),
@@ -90,17 +109,30 @@ fun postCard(image: Image) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_cmt),
                     contentDescription = null,
-                    colorFilter = ColorFilter.tint(Color.LightGray),
+                    colorFilter = ColorFilter.tint(Color.Black),
                 )
                 Text(
                     text = "$comments comments",
-                    color = Color.Gray,
-                    modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
+                    color = Color.Black,
+                    modifier = Modifier.padding(start = 8.dp)
+                )
+            }
+            Row(modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_share),
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(Color.Black),
+                )
+                Text(
+                    text = "share",
+                    color = Color.Black,
+                    modifier = Modifier.padding(start = 8.dp)
                 )
             }
         }
     }
 }
+
 
 @Composable
 fun RoundImageCard(
