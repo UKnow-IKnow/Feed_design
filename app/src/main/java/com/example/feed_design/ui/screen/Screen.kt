@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -62,20 +63,22 @@ fun postCard(image: Image) {
             .background(Color.White)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            RoundImageCard(
-                image = image,
-                Modifier
-                    .size(48.dp)
-                    .padding(4.dp)
-            )
-            Column(
-                modifier = Modifier.padding(start = 2.dp)
-            ) {
-                Text(text = image.name, fontWeight = FontWeight.Bold)
-                Text(text = "$hour hour ago")
-            }
-            Box(modifier = Modifier.background(LightBlue)) {
-                Text(text = image.ancestry)
+            Row(modifier = Modifier.weight(1f),horizontalArrangement = Arrangement.SpaceAround ){
+                RoundImageCard(
+                    image = image,
+                    Modifier
+                        .size(48.dp)
+                        .padding(4.dp)
+                )
+                Column(
+                    modifier = Modifier.padding(start = 2.dp)
+                ) {
+                    Text(text = image.name, fontWeight = FontWeight.Bold)
+                    Text(text = "$hour hour ago")
+                }
+                Box(modifier = Modifier.background(LightBlue)) {
+                    Text(text = image.ancestry)
+                }
             }
             Icon(
                 painter = painterResource(id = R.drawable.ic_verticalmenu),
