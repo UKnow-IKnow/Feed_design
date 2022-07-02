@@ -10,13 +10,18 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
 import com.example.feed_design.R
@@ -63,7 +68,7 @@ fun postCard(image: Image) {
             .background(Color.White)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Row(modifier = Modifier.weight(1f),horizontalArrangement = Arrangement.SpaceAround ){
+            Row(modifier = Modifier.weight(0.5f), horizontalArrangement = Arrangement.SpaceBetween) {
                 RoundImageCard(
                     image = image,
                     Modifier
@@ -71,13 +76,24 @@ fun postCard(image: Image) {
                         .padding(4.dp)
                 )
                 Column(
-                    modifier = Modifier.padding(start = 2.dp)
+                    modifier = Modifier
+                        .padding(2.dp)
+                        .weight(1f)
+
                 ) {
                     Text(text = image.name, fontWeight = FontWeight.Bold)
                     Text(text = "$hour hour ago")
                 }
-                Box(modifier = Modifier.background(LightBlue)) {
-                    Text(text = image.ancestry)
+                Column(
+                    Modifier
+                        .align(CenterVertically)
+                        .weight(1f)
+                ) {
+                    Text(
+                        text = image.ancestry,
+                        modifier = Modifier
+                            .background(LightBlue)
+                    )
                 }
             }
             Icon(
@@ -136,7 +152,6 @@ fun postCard(image: Image) {
     }
 }
 
-
 @Composable
 fun RoundImageCard(
     image: Image, modifier: Modifier = Modifier
@@ -149,6 +164,53 @@ fun RoundImageCard(
             painter = imagerPainter,
             contentDescription = null,
             contentScale = ContentScale.Crop
+        )
+    }
+}
+
+
+
+//Dummy Screens
+@Composable
+fun BazaarScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Gray)
+            .wrapContentSize(Alignment.Center)
+    ) {
+        Text(
+            text = "bazaar",
+            fontWeight = FontWeight.Bold,
+            color = Color.Black,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            textAlign = TextAlign.Center,
+            fontSize = 25.sp
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun BooksScreenPreview() {
+    ProfileScreen()
+}
+
+@Composable
+fun ProfileScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.LightGray)
+            .wrapContentSize(Alignment.Center)
+    ) {
+        Text(
+            text = "Profile",
+            fontWeight = FontWeight.Bold,
+            color = Color.Black,
+            modifier = Modifier.align(Alignment.CenterHorizontally),
+            textAlign = TextAlign.Center,
+            fontSize = 25.sp
         )
     }
 }
