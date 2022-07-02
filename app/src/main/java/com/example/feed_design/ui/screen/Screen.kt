@@ -76,19 +76,29 @@ fun postCard(image: Image) {
             contentScale = ContentScale.FillBounds
         )
         Text(text = image.actor, modifier = Modifier.padding(8.dp))
-        Row(modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_likes),
-                contentDescription = null,
-                colorFilter = ColorFilter.tint(Color.Red),
-            )
-            Text(text = "$likes likes", modifier = Modifier.padding(start = 8.dp))
+        Row {
+            Row(modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_likes),
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(Color.Red),
+                )
+                Text(text = "$likes likes", modifier = Modifier.padding(start = 8.dp))
+            }
+
+            Row(modifier = Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_cmt),
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(Color.LightGray),
+                )
+                Text(
+                    text = "$comments comments",
+                    color = Color.Gray,
+                    modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
+                )
+            }
         }
-        Text(
-            text = "$comments comments",
-            color = Color.Gray,
-            modifier = Modifier.padding(start = 16.dp, bottom = 8.dp)
-        )
     }
 }
 
